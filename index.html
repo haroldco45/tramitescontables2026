@@ -3,143 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trámites Contables | Vibras Positivas</title>
+    <title>Sistema de Trámites | Vibras Positivas</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .glass { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); }
         .bg-colombia { background: linear-gradient(90deg, #FCD116 0%, #003893 50%, #CE1126 100%); height: 4px; }
+        .active-card { border: 2px solid #4f46e5 !important; background: #f0f4ff !important; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
 
     <div class="bg-colombia"></div>
 
-    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
-        <div class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center">
-            <div class="flex items-center space-x-3 mb-4 md:mb-0">
-                <div class="bg-indigo-600 text-white p-2 rounded-lg font-bold text-xl">VP</div>
-                <div>
-                    <h1 class="text-xl font-extrabold tracking-tighter">VIBRAS POSITIVAS</h1>
-                    <p class="text-[10px] uppercase tracking-widest text-indigo-600 font-semibold">Servicios Contables Profesionales</p>
-                </div>
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-indigo-600 text-white p-2 rounded-lg font-bold">VP</div>
+                <span class="font-extrabold text-xl tracking-tight">VIBRAS POSITIVAS</span>
             </div>
-            
-            <div class="flex items-center space-x-6">
-                <div id="hora-legal" class="text-right hidden sm:block border-l pl-6 border-slate-200">
-                    <p class="text-[10px] font-bold text-slate-400 uppercase">Hora Legal Colombia</p>
-                    <p id="clock" class="text-lg font-mono font-bold text-slate-700">--:--:--</p>
-                </div>
-                <a href="https://wa.me/57" class="bg-green-500 hover:bg-green-600 text-white px-5 py-2.5 rounded-full font-bold flex items-center transition-all">
-                    <i class="fab fa-whatsapp mr-2"></i> WhatsApp
-                </a>
+            <div class="text-right">
+                <p class="text-[10px] text-slate-400 font-bold uppercase">Hora Legal CO</p>
+                <p id="clock" class="text-lg font-mono font-bold text-indigo-600">--:--:--</p>
             </div>
         </div>
     </header>
 
-    <section class="relative py-20 bg-slate-900 overflow-hidden">
-        <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-        <div class="container mx-auto px-6 relative z-10 text-center">
-            <span class="bg-indigo-500 text-white px-4 py-1 rounded-full text-xs font-bold mb-6 inline-block uppercase tracking-wider">Actualizado a 2026</span>
-            <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-6">Gestión de Trámites <br><span class="text-indigo-400">Rápida y Confiable</span></h2>
-            <p class="text-slate-400 max-w-2xl mx-auto text-lg mb-10">Soluciones integrales para personas naturales y jurídicas bajo la normativa DIAN vigente y leyes de comercio colombianas.</p>
-        </div>
-    </section>
-
-    <section class="py-16 container mx-auto px-6 -mt-12">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <main class="container mx-auto px-6 py-10">
+        <div class="grid lg:grid-cols-3 gap-8">
             
-            <div class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 hover:border-indigo-300 transition-all group">
-                <div class="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mb-6 text-2xl group-hover:bg-indigo-600 group-hover:text-white transition-all">
-                    <i class="fas fa-university"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-4">Servicios DIAN</h3>
-                <ul class="space-y-3 text-slate-600">
-                    <li class="flex items-center"><i class="fas fa-check-circle text-indigo-500 mr-2"></i> RUT: Inscripción y Actualización</li>
-                    <li class="flex items-center"><i class="fas fa-check-circle text-indigo-500 mr-2"></i> Firma Electrónica</li>
-                    <li class="flex items-center"><i class="fas fa-check-circle text-indigo-500 mr-2"></i> Declaración de Renta 2026</li>
-                    <li class="flex items-center"><i class="fas fa-check-circle text-indigo-500 mr-2"></i> Facturación Electrónica</li>
-                </ul>
-            </div>
-
-            <div class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 hover:border-indigo-300 transition-all group">
-                <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6 text-2xl group-hover:bg-blue-600 group-hover:text-white transition-all">
-                    <i class="fas fa-briefcase"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-4">Cámara & Comercio</h3>
-                <ul class="space-y-3 text-slate-600">
-                    <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-2"></i> Matrícula Mercantil</li>
-                    <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-2"></i> Certificados Tradición/Libertad</li>
-                    <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-2"></i> Redacción de Contratos</li>
-                    <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-2"></i> Poderes y Legalizaciones</li>
-                </ul>
-            </div>
-
-            <div class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 hover:border-indigo-300 transition-all group">
-                <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-6 text-2xl group-hover:bg-emerald-600 group-hover:text-white transition-all">
-                    <i class="fas fa-id-card"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-4">Otros Servicios</h3>
-                <ul class="space-y-3 text-slate-600">
-                    <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Certificados de Ingresos</li>
-                    <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Hojas de Vida Pro (Diseño)</li>
-                    <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Digitalización de Textos</li>
-                    <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Asesoría Financiera Personal</li>
-                </ul>
-            </div>
-
-        </div>
-    </section>
-
-    <footer class="bg-white border-t border-slate-200 pt-16 pb-8">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-start mb-12">
-                <div class="mb-8 md:mb-0 max-w-sm">
-                    <div class="flex items-center space-x-2 mb-4">
-                        <div class="w-8 h-8 bg-indigo-600 rounded text-white flex items-center justify-center font-bold">VP</div>
-                        <span class="font-bold text-lg">Vibras Positivas</span>
-                    </div>
-                    <p class="text-slate-500 text-sm leading-relaxed">
-                        Cumplimos rigurosamente con la Ley 1581 de 2012 para el tratamiento de tus datos personales. Tu información está protegida bajo estándares de seguridad digital.
-                    </p>
-                </div>
+            <div class="lg:col-span-2 space-y-6">
+                <h2 class="text-2xl font-extrabold text-slate-800 mb-6">¿Qué trámite deseas realizar?</h2>
                 
-                <div class="grid grid-cols-2 gap-10">
-                    <div>
-                        <h4 class="font-bold text-slate-900 mb-4 uppercase text-xs tracking-widest">Legal</h4>
-                        <ul class="text-sm text-slate-500 space-y-2">
-                            <li><a href="#" class="hover:text-indigo-600 transition">Habeas Data</a></li>
-                            <li><a href="#" class="hover:text-indigo-600 transition">Términos de Servicio</a></li>
-                        </ul>
+                <div class="grid md:grid-cols-2 gap-4" id="contenedor-tramites">
+                    <div onclick="activarTramite(this, 'RUT', 'Cédula al 150%, Correo y Dirección')" class="cursor-pointer p-6 bg-white rounded-2xl border border-slate-200 hover:shadow-lg transition-all tramite-card">
+                        <i class="fas fa-file-invoice text-indigo-500 text-2xl mb-4"></i>
+                        <h3 class="font-bold text-lg">Trámite RUT</h3>
+                        <p class="text-sm text-slate-500">Inscripción o actualización ante la DIAN.</p>
+                    </div>
+                    <div onclick="activarTramite(this, 'Declaración de Renta', 'Certificados Bancarios y RUT')" class="cursor-pointer p-6 bg-white rounded-2xl border border-slate-200 hover:shadow-lg transition-all tramite-card">
+                        <i class="fas fa-calculator text-emerald-500 text-2xl mb-4"></i>
+                        <h3 class="font-bold text-lg">Declaración de Renta</h3>
+                        <p class="text-sm text-slate-500">Personas naturales y jurídicas 2026.</p>
+                    </div>
+                    <div onclick="activarTramite(this, 'Cámara de Comercio', 'Matrícula Mercantil o Nombre')" class="cursor-pointer p-6 bg-white rounded-2xl border border-slate-200 hover:shadow-lg transition-all tramite-card">
+                        <i class="fas fa-building text-blue-500 text-2xl mb-4"></i>
+                        <h3 class="font-bold text-lg">Cámara de Comercio</h3>
+                        <p class="text-sm text-slate-500">Certificados RUES y renovaciones.</p>
+                    </div>
+                    <div onclick="activarTramite(this, 'Hoja de Vida', 'Experiencia y Datos Personales')" class="cursor-pointer p-6 bg-white rounded-2xl border border-slate-200 hover:shadow-lg transition-all tramite-card">
+                        <i class="fas fa-user-tie text-purple-500 text-2xl mb-4"></i>
+                        <h3 class="font-bold text-lg">Hoja de Vida Pro</h3>
+                        <p class="text-sm text-slate-500">Diseño y optimización de perfil.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="pt-8 border-t border-slate-100 text-center">
-                <p class="text-slate-400 text-xs font-medium">
-                    &copy; 2026 Créditos de derechos de autor a nombre de **Vibras Positivas**. 
-                    <br class="md:hidden"> Desarrollado bajo la Hora Legal de Colombia.
-                </p>
+            <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 h-fit">
+                <h3 id="titulo-form" class="text-xl font-bold mb-2">Iniciar Solicitud</h3>
+                <p id="req-form" class="text-xs text-slate-400 mb-6">Selecciona un trámite de la izquierda</p>
+
+                <form id="form-tramite" class="space-y-4">
+                    <input type="hidden" id="selected-service" value="Ninguno">
+                    <div>
+                        <label class="text-[10px] font-bold uppercase text-slate-400">Tu Nombre</label>
+                        <input type="text" id="nombre" required class="w-full bg-slate-50 border border-slate-200 p-3 rounded-xl outline-none focus:border-indigo-500">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold uppercase text-slate-400">Tu WhatsApp</label>
+                        <input type="tel" id="whatsapp" required placeholder="3001234567" class="w-full bg-slate-50 border border-slate-200 p-3 rounded-xl outline-none focus:border-indigo-500">
+                    </div>
+                    <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-4 rounded-xl hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100 uppercase text-xs tracking-widest">
+                        Enviar a Vibras Positivas
+                    </button>
+                </form>
+
+                <div id="resultado" class="hidden mt-6 p-4 bg-green-50 border border-green-200 rounded-xl text-center">
+                    <p class="text-green-700 font-bold text-sm">✅ ¡Solicitud Procesada!</p>
+                    <p class="text-[10px] text-green-600">Redirigiendo a WhatsApp...</p>
+                </div>
             </div>
         </div>
+    </main>
+
+    <footer class="text-center py-10 text-slate-400 text-xs">
+        <p>© 2026 Todos los créditos de derechos de autor a nombre de <strong>Vibras Positivas</strong>.</p>
     </footer>
 
     <script>
+        // 1. Reloj en tiempo real
         function updateClock() {
-            const options = { 
-                timeZone: 'America/Bogota', 
-                hour: '2-digit', 
-                minute: '2-digit', 
-                second: '2-digit', 
-                hour12: true 
-            };
-            const formatter = new Intl.DateTimeFormat('es-CO', options);
-            document.getElementById('clock').innerText = formatter.format(new Date());
+            const now = new Intl.DateTimeFormat('es-CO', { 
+                timeZone: 'America/Bogota', hour: '2-digit', minute: '2-digit', second: '2-digit' 
+            }).format(new Date());
+            document.getElementById('clock').innerText = now;
         }
         setInterval(updateClock, 1000);
         updateClock();
+
+        // 2. Función para seleccionar trámite
+        function activarTramite(elemento, nombre, requisitos) {
+            // Quitar clase activa de todos
+            document.querySelectorAll('.tramite-card').forEach(card => card.classList.remove('active-card'));
+            // Añadir clase al seleccionado
+            elemento.classList.add('active-card');
+            
+            // Actualizar formulario
+            document.getElementById('titulo-form').innerText = nombre;
+            document.getElementById('req-form').innerText = "Requisitos: " + requisitos;
+            document.getElementById('selected-service').value = nombre;
+        }
+
+        // 3. Lógica de envío REAL
+        document.getElementById('form-tramite').onsubmit = function(e) {
+            e.preventDefault();
+            
+            const servicio = document.getElementById('selected-service').value;
+            const nombre = document.getElementById('nombre').value;
+            const tel = document.getElementById('whatsapp').value;
+
+            if(servicio === "Ninguno") {
+                alert("Por favor, selecciona primero un trámite de la lista.");
+                return;
+            }
+
+            // Mostrar feedback visual
+            document.getElementById('resultado').classList.remove('hidden');
+
+            // Crear mensaje para WhatsApp
+            const mensaje = `Hola Vibras Positivas, mi nombre es ${nombre}. Deseo iniciar el trámite de: *${servicio}*. Mi contacto es ${tel}.`;
+            const url = `https://wa.me/573000000000?text=${encodeURIComponent(mensaje)}`; // Cambia el número por el real
+
+            // Redirigir después de 1.5 segundos
+            setTimeout(() => {
+                window.open(url, '_blank');
+                document.getElementById('resultado').classList.add('hidden');
+                alert("Se ha generado tu solicitud de " + servicio + " bajo la autoría de Vibras Positivas.");
+            }, 1500);
+        };
     </script>
 </body>
 </html>
