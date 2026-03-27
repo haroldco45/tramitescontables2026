@@ -3,144 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Trámites | Vibras Positivas</title>
+    <title>Plataforma de Trámites Pro | Vibras Positivas</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; }
         .bg-colombia { background: linear-gradient(90deg, #FCD116 0%, #003893 50%, #CE1126 100%); height: 4px; }
-        .active-card { border: 2px solid #4f46e5 !important; background: #f0f4ff !important; }
+        .card-active { border: 2px solid #4f46e5 !important; background: #eef2ff !important; transform: scale(1.02); }
+        .btn-vibras { background-color: #4f46e5; transition: all 0.3s ease; }
+        .btn-vibras:hover { background-color: #3730a3; transform: translateY(-2px); }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900">
-
+<body>
     <div class="bg-colombia"></div>
 
-    <header class="bg-white shadow-sm sticky top-0 z-50">
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-3">
                 <div class="bg-indigo-600 text-white p-2 rounded-lg font-bold">VP</div>
-                <span class="font-extrabold text-xl tracking-tight">VIBRAS POSITIVAS</span>
+                <div>
+                    <h1 class="text-lg font-extrabold tracking-tight">VIBRAS POSITIVAS</h1>
+                    <p class="text-[9px] uppercase font-bold text-indigo-600">Sistema Integral de Trámites v2.0</p>
+                </div>
             </div>
-            <div class="text-right">
-                <p class="text-[10px] text-slate-400 font-bold uppercase">Hora Legal CO</p>
-                <p id="clock" class="text-lg font-mono font-bold text-indigo-600">--:--:--</p>
+            <div class="text-right hidden sm:block">
+                <p class="text-[10px] text-slate-400 font-bold">HORA LEGAL COLOMBIA</p>
+                <p id="live-clock" class="text-md font-mono font-bold text-slate-700">--:--:--</p>
             </div>
         </div>
     </header>
 
-    <main class="container mx-auto px-6 py-10">
-        <div class="grid lg:grid-cols-3 gap-8">
+    <main class="container mx-auto px-4 py-8">
+        <div class="grid lg:grid-cols-12 gap-8">
             
-            <div class="lg:col-span-2 space-y-6">
-                <h2 class="text-2xl font-extrabold text-slate-800 mb-6">¿Qué trámite deseas realizar?</h2>
+            <div class="lg:col-span-8">
+                <h2 class="text-2xl font-black text-slate-800 mb-6">Panel de Gestión de Trámites</h2>
                 
-                <div class="grid md:grid-cols-2 gap-4" id="contenedor-tramites">
-                    <div onclick="activarTramite(this, 'RUT', 'Cédula al 150%, Correo y Dirección')" class="cursor-pointer p-6 bg-white rounded-2xl border border-slate-200 hover:shadow-lg transition-all tramite-card">
-                        <i class="fas fa-file-invoice text-indigo-500 text-2xl mb-4"></i>
-                        <h3 class="font-bold text-lg">Trámite RUT</h3>
-                        <p class="text-sm text-slate-500">Inscripción o actualización ante la DIAN.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div onclick="configurarServicio('RUT', 'DIAN', ['Cédula al 150%', 'Correo electrónico', 'Dirección física'])" class="bg-white p-5 rounded-2xl border border-slate-200 cursor-pointer hover:shadow-md transition-all service-card">
+                        <div class="flex justify-between items-start">
+                            <i class="fas fa-address-card text-indigo-500 text-xl"></i>
+                            <span class="text-[10px] bg-indigo-50 text-indigo-700 px-2 py-1 rounded font-bold">DIAN</span>
+                        </div>
+                        <h3 class="font-bold mt-3">RUT (Inscripción/Act.)</h3>
+                        <p class="text-xs text-slate-500 mt-1">Gestión de datos ante la DIAN 2026.</p>
                     </div>
-                    <div onclick="activarTramite(this, 'Declaración de Renta', 'Certificados Bancarios y RUT')" class="cursor-pointer p-6 bg-white rounded-2xl border border-slate-200 hover:shadow-lg transition-all tramite-card">
-                        <i class="fas fa-calculator text-emerald-500 text-2xl mb-4"></i>
-                        <h3 class="font-bold text-lg">Declaración de Renta</h3>
-                        <p class="text-sm text-slate-500">Personas naturales y jurídicas 2026.</p>
+
+                    <div onclick="configurarServicio('Renta', 'Tributario', ['Certificados Bancarios', 'Extractos 2025', 'RUT'])" class="bg-white p-5 rounded-2xl border border-slate-200 cursor-pointer hover:shadow-md transition-all service-card">
+                        <div class="flex justify-between items-start">
+                            <i class="fas fa-coins text-emerald-500 text-xl"></i>
+                            <span class="text-[10px] bg-emerald-50 text-emerald-700 px-2 py-1 rounded font-bold">ANUAL</span>
+                        </div>
+                        <h3 class="font-bold mt-3">Declaración de Renta</h3>
+                        <p class="text-xs text-slate-500 mt-1">Cálculo y presentación de impuestos.</p>
                     </div>
-                    <div onclick="activarTramite(this, 'Cámara de Comercio', 'Matrícula Mercantil o Nombre')" class="cursor-pointer p-6 bg-white rounded-2xl border border-slate-200 hover:shadow-lg transition-all tramite-card">
-                        <i class="fas fa-building text-blue-500 text-2xl mb-4"></i>
-                        <h3 class="font-bold text-lg">Cámara de Comercio</h3>
-                        <p class="text-sm text-slate-500">Certificados RUES y renovaciones.</p>
+
+                    <div onclick="configurarServicio('Cámara de Comercio', 'RUES', ['Nombre de Empresa', 'NIT', 'Cédula Representante'])" class="bg-white p-5 rounded-2xl border border-slate-200 cursor-pointer hover:shadow-md transition-all service-card">
+                        <div class="flex justify-between items-start">
+                            <i class="fas fa-building text-blue-500 text-xl"></i>
+                            <span class="text-[10px] bg-blue-50 text-blue-700 px-2 py-1 rounded font-bold">LEGAL</span>
+                        </div>
+                        <h3 class="font-bold mt-3">Cámara de Comercio</h3>
+                        <p class="text-xs text-slate-500 mt-1">Renovaciones y certificados mercantiles.</p>
                     </div>
-                    <div onclick="activarTramite(this, 'Hoja de Vida', 'Experiencia y Datos Personales')" class="cursor-pointer p-6 bg-white rounded-2xl border border-slate-200 hover:shadow-lg transition-all tramite-card">
-                        <i class="fas fa-user-tie text-purple-500 text-2xl mb-4"></i>
-                        <h3 class="font-bold text-lg">Hoja de Vida Pro</h3>
-                        <p class="text-sm text-slate-500">Diseño y optimización de perfil.</p>
+
+                    <div onclick="configurarServicio('Tradición y Libertad', 'SNR', ['Matrícula Inmobiliaria', 'Ciudad'])" class="bg-white p-5 rounded-2xl border border-slate-200 cursor-pointer hover:shadow-md transition-all service-card">
+                        <div class="flex justify-between items-start">
+                            <i class="fas fa-key text-amber-500 text-xl"></i>
+                            <span class="text-[10px] bg-amber-50 text-amber-700 px-2 py-1 rounded font-bold">BIENES</span>
+                        </div>
+                        <h3 class="font-bold mt-3">Certificado de Tradición</h3>
+                        <p class="text-xs text-slate-500 mt-1">Propiedad raíz ante la SNR.</p>
+                    </div>
+
+                    <div onclick="configurarServicio('Hoja de Vida', 'Laboral', ['Experiencia', 'Estudios', 'Foto'])" class="bg-white p-5 rounded-2xl border border-slate-200 cursor-pointer hover:shadow-md transition-all service-card">
+                        <div class="flex justify-between items-start">
+                            <i class="fas fa-user-graduate text-purple-500 text-xl"></i>
+                            <span class="text-[10px] bg-purple-50 text-purple-700 px-2 py-1 rounded font-bold">PRO</span>
+                        </div>
+                        <h3 class="font-bold mt-3">Hoja de Vida / Pasa Texto</h3>
+                        <p class="text-xs text-slate-500 mt-1">Diseño y transcripción profesional.</p>
+                    </div>
+
+                    <div onclick="configurarServicio('Poderes y Contratos', 'Legal', ['Cédula de Partes', 'Objeto del Contrato'])" class="bg-white p-5 rounded-2xl border border-slate-200 cursor-pointer hover:shadow-md transition-all service-card">
+                        <div class="flex justify-between items-start">
+                            <i class="fas fa-file-contract text-red-500 text-xl"></i>
+                            <span class="text-[10px] bg-red-50 text-red-700 px-2 py-1 rounded font-bold">FIRMA</span>
+                        </div>
+                        <h3 class="font-bold mt-3">Contratos y Poderes</h3>
+                        <p class="text-xs text-slate-500 mt-1">Redacción legal especializada.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 h-fit">
-                <h3 id="titulo-form" class="text-xl font-bold mb-2">Iniciar Solicitud</h3>
-                <p id="req-form" class="text-xs text-slate-400 mb-6">Selecciona un trámite de la izquierda</p>
+            <div class="lg:col-span-4">
+                <div class="bg-white rounded-3xl shadow-xl p-8 sticky top-24 border border-slate-100">
+                    <h3 id="form-title" class="text-xl font-black text-indigo-700 mb-2">Iniciar Gestión</h3>
+                    <p id="form-subtitle" class="text-xs text-slate-400 mb-6">Selecciona un trámite para ver los requisitos legales colombianos.</p>
 
-                <form id="form-tramite" class="space-y-4">
-                    <input type="hidden" id="selected-service" value="Ninguno">
-                    <div>
-                        <label class="text-[10px] font-bold uppercase text-slate-400">Tu Nombre</label>
-                        <input type="text" id="nombre" required class="w-full bg-slate-50 border border-slate-200 p-3 rounded-xl outline-none focus:border-indigo-500">
-                    </div>
-                    <div>
-                        <label class="text-[10px] font-bold uppercase text-slate-400">Tu WhatsApp</label>
-                        <input type="tel" id="whatsapp" required placeholder="3001234567" class="w-full bg-slate-50 border border-slate-200 p-3 rounded-xl outline-none focus:border-indigo-500">
-                    </div>
-                    <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-4 rounded-xl hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100 uppercase text-xs tracking-widest">
-                        Enviar a Vibras Positivas
-                    </button>
-                </form>
+                    <form id="action-form" class="space-y-4">
+                        <input type="hidden" id="service-input">
+                        
+                        <div>
+                            <label class="text-[10px] font-extrabold text-slate-500 uppercase">Nombre Completo</label>
+                            <input type="text" id="user-name" required class="w-full bg-slate-50 border border-slate-200 p-3 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none">
+                        </div>
 
-                <div id="resultado" class="hidden mt-6 p-4 bg-green-50 border border-green-200 rounded-xl text-center">
-                    <p class="text-green-700 font-bold text-sm">✅ ¡Solicitud Procesada!</p>
-                    <p class="text-[10px] text-green-600">Redirigiendo a WhatsApp...</p>
+                        <div>
+                            <label class="text-[10px] font-extrabold text-slate-500 uppercase">WhatsApp de Contacto</label>
+                            <input type="tel" id="user-phone" required placeholder="3XX XXXXXXX" class="w-full bg-slate-50 border border-slate-200 p-3 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none">
+                        </div>
+
+                        <div id="dynamic-requirements" class="bg-slate-50 p-4 rounded-xl border border-dashed border-slate-300 hidden">
+                            <p class="text-[10px] font-bold text-indigo-600 mb-2 uppercase">Requisitos a preparar:</p>
+                            <ul id="req-list" class="text-xs text-slate-600 space-y-1 list-disc list-inside"></ul>
+                        </div>
+
+                        <button type="submit" class="w-full btn-vibras text-white font-bold py-4 rounded-xl shadow-lg shadow-indigo-100 uppercase text-xs tracking-widest">
+                            Realizar Trámite Ahora
+                        </button>
+                    </form>
+
+                    <div id="loading-overlay" class="hidden mt-4 text-center">
+                        <div class="animate-spin inline-block w-6 h-6 border-4 border-indigo-500 border-t-transparent rounded-full mb-2"></div>
+                        <p class="text-[10px] font-bold text-slate-500 uppercase">Conectando con Servidores...</p>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="text-center py-10 text-slate-400 text-xs">
-        <p>© 2026 Todos los créditos de derechos de autor a nombre de <strong>Vibras Positivas</strong>.</p>
+    <footer class="container mx-auto px-6 py-12 text-center border-t border-slate-200 mt-12">
+        <p class="text-slate-400 text-sm">© 2026 Créditos de derechos de autor a nombre de <strong>Vibras Positivas</strong>.</p>
+        <div class="mt-4 flex justify-center space-x-4 opacity-50">
+            <i class="fab fa-whatsapp"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fas fa-shield-alt"></i>
+        </div>
     </footer>
 
     <script>
-        // 1. Reloj en tiempo real
+        // Reloj Real de Colombia
         function updateClock() {
-            const now = new Intl.DateTimeFormat('es-CO', { 
-                timeZone: 'America/Bogota', hour: '2-digit', minute: '2-digit', second: '2-digit' 
-            }).format(new Date());
-            document.getElementById('clock').innerText = now;
+            const options = { timeZone: 'America/Bogota', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+            const time = new Intl.DateTimeFormat('es-CO', options).format(new Date());
+            document.getElementById('live-clock').innerText = time;
         }
         setInterval(updateClock, 1000);
         updateClock();
 
-        // 2. Función para seleccionar trámite
-        function activarTramite(elemento, nombre, requisitos) {
-            // Quitar clase activa de todos
-            document.querySelectorAll('.tramite-card').forEach(card => card.classList.remove('active-card'));
-            // Añadir clase al seleccionado
-            elemento.classList.add('active-card');
-            
-            // Actualizar formulario
-            document.getElementById('titulo-form').innerText = nombre;
-            document.getElementById('req-form').innerText = "Requisitos: " + requisitos;
-            document.getElementById('selected-service').value = nombre;
+        // Configuración Dinámica de Trámites
+        function configurarServicio(nombre, categoria, requisitos) {
+            // Estética de selección
+            document.querySelectorAll('.service-card').forEach(c => c.classList.remove('card-active'));
+            event.currentTarget.classList.add('card-active');
+
+            // Actualizar Formulario
+            document.getElementById('form-title').innerText = nombre;
+            document.getElementById('form-subtitle').innerText = "Trámite de categoría: " + categoria;
+            document.getElementById('service-input').value = nombre;
+
+            // Mostrar requisitos
+            const reqContainer = document.getElementById('dynamic-requirements');
+            const reqList = document.getElementById('req-list');
+            reqList.innerHTML = "";
+            requisitos.forEach(r => {
+                const li = document.createElement('li');
+                li.innerText = r;
+                reqList.appendChild(li);
+            });
+            reqContainer.classList.remove('hidden');
         }
 
-        // 3. Lógica de envío REAL
-        document.getElementById('form-tramite').onsubmit = function(e) {
+        // Procesamiento del Trámite
+        document.getElementById('action-form').onsubmit = function(e) {
             e.preventDefault();
             
-            const servicio = document.getElementById('selected-service').value;
-            const nombre = document.getElementById('nombre').value;
-            const tel = document.getElementById('whatsapp').value;
+            const servicio = document.getElementById('service-input').value;
+            const cliente = document.getElementById('user-name').value;
+            const tel = document.getElementById('user-phone').value;
 
-            if(servicio === "Ninguno") {
+            if(!servicio) {
                 alert("Por favor, selecciona primero un trámite de la lista.");
                 return;
             }
 
-            // Mostrar feedback visual
-            document.getElementById('resultado').classList.remove('hidden');
-
-            // Crear mensaje para WhatsApp
-            const mensaje = `Hola Vibras Positivas, mi nombre es ${nombre}. Deseo iniciar el trámite de: *${servicio}*. Mi contacto es ${tel}.`;
-            const url = `https://wa.me/573000000000?text=${encodeURIComponent(mensaje)}`; // Cambia el número por el real
-
-            // Redirigir después de 1.5 segundos
+            // Simulación de Proceso
+            document.getElementById('loading-overlay').classList.remove('hidden');
+            
             setTimeout(() => {
-                window.open(url, '_blank');
-                document.getElementById('resultado').classList.add('hidden');
-                alert("Se ha generado tu solicitud de " + servicio + " bajo la autoría de Vibras Positivas.");
-            }, 1500);
+                const mensaje = `Hola Vibras Positivas 👋\n\nHe iniciado una solicitud desde la App Web:\n📌 *Trámite:* ${servicio}\n👤 *Cliente:* ${cliente}\n📱 *WhatsApp:* ${tel}\n\nQuedo atento a las instrucciones legales.`;
+                const whatsappUrl = `https://wa.me/573000000000?text=${encodeURIComponent(mensaje)}`;
+                
+                window.open(whatsappUrl, '_blank');
+                document.getElementById('loading-overlay').classList.add('hidden');
+                
+                alert(`Solicitud de ${servicio} generada con éxito.\nRegistrado bajo la autoría de Vibras Positivas.`);
+            }, 2000);
         };
     </script>
 </body>
